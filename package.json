@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "path": "^0.12.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "webpack-stream": "^5.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,6 +27,12 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
+    "@babel/plugin-syntax-export-default-from": "^7.2.0",
+    "@babel/preset-env": "^7.5.4",
+    "babel-preset-react": "^6.24.1",
     "browser-sync": "^2.26.7",
     "del": "^5.0.0",
     "gulp": "^4.0.2",
@@ -33,6 +41,10 @@
     "gulp-concat": "^2.6.1",
     "gulp-less": "^4.0.1",
     "gulp-minify-css": "^1.2.4",
-    "gulp-sourcemaps": "^2.6.5"
+    "gulp-sourcemaps": "^2.6.5",
+    "less-loader": "^5.0.0",
+    "react-inline-svg": "^1.1.0",
+    "react-inlinesvg": "^1.1.4",
+    "svg-inline-loader": "^0.8.0"
   }
 }
