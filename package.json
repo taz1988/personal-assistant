@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "gulp-s3-upload": "^1.7.3",
     "path": "^0.12.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
