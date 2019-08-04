@@ -13,7 +13,7 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 
 
 module.exports = {
-  entry:  path.resolve(__dirname, 'src/js/App.js'),
+  entry:  path.resolve(__dirname, 'src/js/Main.js'),
   output: {
     path: path.resolve(__dirname, "build/"),
     filename: "app.js"

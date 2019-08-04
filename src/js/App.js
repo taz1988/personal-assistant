@@ -13,16 +13,16 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <a
-          className="App-l  ink"
+          className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React, test release
         </a>
       </header>
     </div>
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("main"));
+export default App;
