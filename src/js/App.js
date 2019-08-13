@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import logo from '../images/logo.svg';
 import SVG from 'react-inlinesvg';
-import '../css/index.less';
+import '../css/index.scss';
 
 function App() {
   return (

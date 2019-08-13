@@ -28,11 +28,11 @@ module.exports = {
         }
       },
       {
-         test: /\.less$/,
+         test: /\.scss$/,
          use: [
              'style-loader',
              'css-loader',
-             'less-loader'
+             'sass-loader'
          ]
      },
      {
