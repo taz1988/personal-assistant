@@ -14,12 +14,20 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
   inlineSource: 'app.js'
 });
 
+const htmlLoginWebpackPlugin = new HtmlWebpackPlugin({
+  template: "./src/html/index.html",
+  filename: "./login.html",
+  inlineSource: 'login.js'
+});
+
 
 module.exports = {
-  entry:  path.resolve(__dirname, 'src/js/Main.js'),
+  entry:  {
+    "app" : path.resolve(__dirname, 'src/js/Main.js'),
+    "login" : path.resolve(__dirname, 'src/js/Login.js')
+  },
   output: {
-    path: path.resolve(__dirname, "build/"),
-    filename: "app.js"
+    path: path.resolve(__dirname, "build/")
   },
   module: {
     rules: [
@@ -52,5 +60,5 @@ module.exports = {
     }
    ]
   },
-  plugins: isProduction ? [new miniCssExtractPlugin(), htmlWebpackPlugin, new HtmlWebpackInlineSourcePlugin(), sourceMapDevToolPlugin] : [htmlWebpackPlugin, new HtmlWebpackInlineSourcePlugin(), sourceMapDevToolPlugin]
+  plugins: isProduction ? [new miniCssExtractPlugin(), htmlWebpackPlugin, htmlLoginWebpackPlugin, new HtmlWebpackInlineSourcePlugin(), sourceMapDevToolPlugin] : [htmlWebpackPlugin, htmlLoginWebpackPlugin, new HtmlWebpackInlineSourcePlugin(), sourceMapDevToolPlugin]
 };
