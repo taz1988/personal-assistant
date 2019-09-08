@@ -28,13 +28,21 @@ module.exports = {
         }
       },
       {
-         test: /\.less$/,
+         test: /\.scss$/,
          use: [
              'style-loader',
              'css-loader',
-             'less-loader'
+             'sass-loader'
          ]
      },
+     {
+        test: /\.sass/,
+        use: [
+            'style-loader',
+            'css-loader',
+            'sass-loader'
+        ]
+    },
      {
         test: /\.svg$/,
         loader: 'svg-inline-loader'
