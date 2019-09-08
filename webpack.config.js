@@ -6,9 +6,12 @@ const sourceMapDevToolPlugin = new webpack.SourceMapDevToolPlugin({});
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
   template: "./src/html/index.html",
-  filename: "./index.html"
+  filename: "./index.html",
+  inlineSource: 'app.js'
 });
 
 
@@ -49,5 +52,5 @@ module.exports = {
     }
    ]
   },
-  plugins: isProduction ? [new miniCssExtractPlugin(), htmlWebpackPlugin, sourceMapDevToolPlugin] : [htmlWebpackPlugin, sourceMapDevToolPlugin]
+  plugins: isProduction ? [new miniCssExtractPlugin(), htmlWebpackPlugin, new HtmlWebpackInlineSourcePlugin(), sourceMapDevToolPlugin] : [htmlWebpackPlugin, new HtmlWebpackInlineSourcePlugin(), sourceMapDevToolPlugin]
 };
