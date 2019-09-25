@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import '../css/index.scss';
+import '../css/login.scss';
 import '../css/bulma.sass';
 
 function Login() {
   return (
-    <div className="App">
+  <form method="post">
+    <div className="container login-container">
+        <h1>Personal Assistant</h1>
         <div class="field">
         <p class="control has-icons-left has-icons-right">
-          <input class="input" type="email" placeholder="Email" />
+          <input class="input" name="email" type="email" placeholder="Email" />
           <span class="icon is-small is-left">
             <i class="fas fa-envelope"></i>
           </span>
@@ -19,7 +21,7 @@ function Login() {
         </div>
         <div class="field">
         <p class="control has-icons-left">
-          <input class="input" type="password" placeholder="Password" />
+          <input class="input" name="password" type="password" placeholder="Password" />
           <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
           </span>
@@ -33,7 +35,8 @@ function Login() {
         </p>
     </div>
     </div>
+    </form>
   );
 }
 
-ReactDOM.render(<Login />, document.getElementById("main"));
+export default Login;

@@ -1,9 +1,11 @@
 const gulp          = require('gulp');
 const webpack       = require('webpack');
-const webpackConfig = require('./webpack.config.js')
 const del           = require('del');
 const s3            = require('gulp-s3-upload')();
 const jest          = require('gulp-jest').default;
+const webpackConfig = require('./webpack.config.js');
+const webpackConfigProd = require('./webpack.production.config.js');
+let actualWebpackConfig = webpackConfig;
 
 const targetMainPath = "build/";
 
@@ -14,19 +16,19 @@ function clean() {
 
 function releaseToBucket()
 {
-  return gulp.src("./build/**")
+  return gulp.src("./build/*.html")
   .pipe(s3({
     Bucket: 'personal-assistant'
   }));
 }
 
 function executeTests() {
-  return gulp.src('src/**.test.js').pipe(jest());
+  return gulp.src('src/tests/**.test.js').pipe(jest());
 };
 
 function executeWebpack(cb)
 {
-      webpack(webpackConfig, (err, stats) => {
+      webpack(actualWebpackConfig, (err, stats) => {
         console.log(err);
           if (err) {
               cb(err)
@@ -40,11 +42,18 @@ function executeWebpack(cb)
 
 function watch()
 {
-    gulp.watch('src/css/*.less',  gulp.series('compileLess'));
+    gulp.watch("src/**", gulp.series(executeWebpack));
+};
+
+function initProdConfig(cb)
+{
+    actualWebpackConfig = webpackConfigProd;
+    cb();
 };
 
 
 exports.webpack  = executeWebpack;
-exports.release = gulp.series(clean, executeWebpack, executeTests, releaseToBucket);
+exports.release = gulp.series(clean, initProdConfig, executeWebpack, executeTests, releaseToBucket);
 exports.executeTests = executeTests;
+exports.develop = gulp.series(clean, executeWebpack, watch);
 exports.default = gulp.series(clean, executeWebpack, executeTests);
