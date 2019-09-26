@@ -26,6 +26,7 @@
     "react-dom": "^16.8.6",
     "sass-loader": "^8.0.0",
     "style-loader": "^0.23.1",
+    "url-loader": "^2.1.0",
     "webpack-stream": "^5.2.1"
   },
   "scripts": {
@@ -44,7 +45,9 @@
   },
   "jest": {
     "automock": false,
-    "setupFiles": ["./setupJest.js"],
+    "setupFiles": [
+      "./setupJest.js"
+    ],
     "setupTestFrameworkScriptFile": "jest-enzyme",
     "testEnvironment": "enzyme",
     "moduleFileExtensions": [

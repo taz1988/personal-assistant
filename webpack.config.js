@@ -60,12 +60,16 @@ module.exports = {
             'sass-loader'
         ]
     },
-    {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [
-           'file-loader',
-        ]
-      }
+       {
+           test: /\.(png|jp(e*)g|svg)$/,
+           use: [{
+               loader: 'url-loader',
+               options: {
+                   limit: 8000000,
+                   name: 'images/[hash]-[name].[ext]'
+               }
+           }]
+       }
    ]
   },
   plugins: [definePlugin, htmlWebpackPlugin, htmlLoginWebpackPlugin, sourceMapDevToolPlugin]

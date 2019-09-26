@@ -5,6 +5,7 @@ import SVG from 'react-inlinesvg';
 import '../css/index.scss';
 import '../css/bulma.sass';
 import Weather from './Weather.js'
+import TaskList from './TaskList.js'
 
 function App() {
   return (
@@ -14,11 +15,8 @@ function App() {
         <Weather location="Kecskemét" />
         <Weather location="Helvécia" />
       </div>
-      <div class="column is-one-third">
-          //TODO daily tasks
-      </div>
-      <div class="column is-one-third">
-         //TODO Upcoming events
+      <div class="column is-two-third">
+          <TaskList title="Daily tasks" />
       </div>
     </div>
   );
