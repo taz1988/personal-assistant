@@ -1,4 +1,5 @@
 const gulp          = require('gulp');
+const dotenv          = require('dotenv');
 const webpack       = require('webpack');
 const del           = require('del');
 const s3            = require('gulp-s3-upload')();
@@ -28,6 +29,7 @@ function executeTests() {
 
 function executeWebpack(cb)
 {
+      dotenv.config();
       webpack(actualWebpackConfig, (err, stats) => {
         console.log(err);
           if (err) {

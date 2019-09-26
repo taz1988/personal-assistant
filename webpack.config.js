@@ -1,8 +1,12 @@
+require('dotenv').config()
 const path                   = require('path');
 const webpack                = require('webpack');
 const HtmlWebpackPlugin      = require('html-webpack-plugin');
 const miniCssExtractPlugin   = require('mini-css-extract-plugin');
 const sourceMapDevToolPlugin = new webpack.SourceMapDevToolPlugin({});
+const  definePlugin = new webpack.DefinePlugin({
+    OPEN_WEATHER_MAP_API_KEY: JSON.stringify(process.env.OPEN_WEATHER_MAP_API_KEY)
+});
 
 const isProduction = process.env.TARGET === 'production';
 
@@ -56,11 +60,13 @@ module.exports = {
             'sass-loader'
         ]
     },
-     {
-        test: /\.svg$/,
-        loader: 'svg-inline-loader'
-    }
+    {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+           'file-loader',
+        ]
+      }
    ]
   },
-  plugins: [htmlWebpackPlugin, htmlLoginWebpackPlugin, sourceMapDevToolPlugin]
+  plugins: [definePlugin, htmlWebpackPlugin, htmlLoginWebpackPlugin, sourceMapDevToolPlugin]
 };

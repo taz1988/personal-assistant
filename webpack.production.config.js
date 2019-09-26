@@ -1,8 +1,12 @@
+require('dotenv').config()
 const path                   = require('path');
 const webpack                = require('webpack');
 const HtmlWebpackPlugin      = require('html-webpack-plugin');
 const miniCssExtractPlugin   = require('mini-css-extract-plugin');
 const sourceMapDevToolPlugin = new webpack.SourceMapDevToolPlugin({});
+const  definePlugin = new webpack.DefinePlugin({
+    OPEN_WEATHER_MAP_API_KEY: JSON.stringify(process.env.OPEN_WEATHER_MAP_API_KEY)
+});
 
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
@@ -24,7 +28,7 @@ const htmlLoginWebpackPlugin = new HtmlWebpackPlugin({
 module.exports = {
   entry:  {
     "app" : path.resolve(__dirname, 'src/js/Main.js'),
-    "login" : path.resolve(__dirname, 'src/js/Login.js')
+    "login" : path.resolve(__dirname, 'src/js/MainLogin.js')
   },
   output: {
     path: path.resolve(__dirname, "build/")
@@ -55,10 +59,12 @@ module.exports = {
         ]
     },
      {
-        test: /\.svg$/,
-        loader: 'svg-inline-loader'
-    }
+         test: /\.(png|svg|jpg|gif)$/,
+         use: [
+            'file-loader',
+         ]
+     }
    ]
   },
-  plugins:[htmlWebpackPlugin, htmlLoginWebpackPlugin, new HtmlWebpackInlineSourcePlugin(), sourceMapDevToolPlugin]
+  plugins:[definePlugin, htmlWebpackPlugin, htmlLoginWebpackPlugin, new HtmlWebpackInlineSourcePlugin(), sourceMapDevToolPlugin]
 };
